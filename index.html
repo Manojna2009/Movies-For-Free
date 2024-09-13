@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Movies for Free - Watch Free Movies on My TankieTube Channel">
-    <meta name="author" content="Your Name">
-    <title>Movies For Free - TankieTube Channel</title>
+    <meta name="author" content="Manojna">
+<!-- Favicon -->
+    <link rel="icon" href="https://drive.google.com/uc?export=view&id=1efBxnh3tyCLuHgx81u2sp275jVaYRmTF" type="image/png">
+    <title>Movies For Free</title>
     
+
     <!-- Google Fonts for Apple-like typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Main CSS for Apple-like style -->
+
+    <!-- Dark Mode CSS -->
     <style>
         * {
             margin: 0;
@@ -20,16 +23,17 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            color: #333;
-            background-color: #f4f4f4;
+            background-color: #1e1e1e; /* Dark mode background */
+            color: #f4f4f4; /* Light text for dark mode */
             overflow-x: hidden;
+            padding-top: 80px; /* To avoid overlap with fixed header */
         }
 
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(34, 34, 34, 0.9); /* Dark transparent background */
             backdrop-filter: blur(10px);
             padding: 20px;
             z-index: 1000;
@@ -38,117 +42,131 @@
 
         header h1 {
             font-size: 1.8em;
-            color: #333;
+            color: #ffcc00; /* Bright yellow for contrast */
             font-weight: 500;
+            text-align: center;
         }
 
-        section {
-            height: 100vh;
+        #searchBar {
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            background-color: #333; /* Dark background for search bar */
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 8px;
+        }
+
+        .video-list {
+            list-style: none;
+            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            scroll-snap-align: start;
+            flex-wrap: wrap; /* Enables side-by-side display */
+            gap: 20px;
+            justify-content: space-between;
         }
 
-        .hero {
-            background-color: #ffffff;
-            text-align: center;
-            padding: 50px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .hero h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.3em;
-            color: #555;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .channel-section {
-            background-color: #f4f4f4;
+        .video-item {
+            display: none; /* Hidden by default */
+            width: 48%; /* Two videos side by side */
+            background-color: #282828; /* Dark video container background */
             padding: 20px;
-            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .channel-section iframe {
-            width: 80%;
-            height: 80vh;
+        .video-item p {
+            color: #ffcc00; /* Title color to match the theme */
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            display: none; /* Titles hidden by default */
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
             border-radius: 10px;
-            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
             border: none;
         }
 
         footer {
             padding: 20px;
             text-align: center;
-            background-color: #333;
+            background-color: #333; /* Dark footer */
             color: white;
-            position: relative;
+            margin-top: 40px;
         }
 
         footer a {
-            color: #ffcc00;
+            color: #ffcc00; /* Bright link color for footer */
             text-decoration: none;
         }
 
-        /* Smooth transitions */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        footer a:hover {
+            text-decoration: underline;
         }
-
-        /* Scroll snap for smooth scrolling between sections */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            scroll-snap-type: y mandatory;
-        }
-        
     </style>
 </head>
 <body>
 
     <header>
         <h1>Movies For Free</h1>
+        <!-- Search Bar -->
+        <input type="text" id="searchBar" placeholder="Search 'John Wick'..." onkeyup="searchVideos()">
     </header>
 
-    <section class="hero">
-        <div>
-            <h1>Watch Free Movies Online</h1>
-            <p>Stream free movies directly from our TankieTube channel with a premium experience. No sign-up required!</p>
-        </div>
-    </section>
+    <!-- Video List Section -->
+    <ul class="video-list" id="videoList">
+        <li class="video-item" data-title="John Wick">
+            <p>John Wick</p>
+            <iframe title="John Wick" width="560" height="315" src="https://tankie.tube/videos/embed/234b185f-c8cb-40f3-a48e-9072b53bad9f" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        </li>
+        <li class="video-item" data-title="John Wick Chapter 2">
+            <p>John Wick Chapter 2</p>
+            <iframe title="John Wick Chapter 2" width="560" height="315" src="https://tankie.tube/videos/embed/8ec714bf-eaec-4ff6-93d3-13f495fccfc5" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        </li>
+        <li class="video-item" data-title="John Wick Chapter 3">
+            <p>John Wick Chapter 3</p>
+            <iframe title="John.Wick.Chapter.3." width="560" height="315" src="https://tankie.tube/videos/embed/8bd6d7f3-cac4-4554-a306-687f65eedb67" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        </li>
+        <li class="video-item" data-title="John Wick Chapter 4">
+            <p>John Wick Chapter 4</p>
+            <iframe title="John Wick Chapter 4 2023 V2 1080p HDTS x264 AAC - HushRips" width="560" height="315" src="https://tankie.tube/videos/embed/097744e8-e5ec-45c0-8092-4c8e0af3867a" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        </li>
+    </ul>
 
-    <section class="channel-section">
-        <!-- Embed the channel link -->
-        <iframe title="Movies For Free" width="560" height="315" src="https://tankie.tube/video-playlists/embed/4e67209d-ea6e-4b62-adee-1a2dd2d976a7" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        <!-- Contact Section -->
+    <section id="contact" style="background-color: #333; padding: 40px; text-align: center; color: white; margin-top: 40px;">
+        <h2>Contact Us</h2>
+        <p>Feel free to reach out to us via email or phone for any inquiries!</p>
+        <p>Email: <a href="mailto:Manojna958@gmail.com" style="color: #ffcc00; text-decoration: none;">manojna958@gmail.com</a></p>
+        <p>Phone: <a href="tel:+1234567890" style="color: #ffcc00; text-decoration: none;">+123-456-7890</a></p>
     </section>
 
     <footer>
-        <p>Powered by <a href="https://tankie.tube" target="_blank">TankieTube</a></p>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>Powered by <a href="https://tankie.tube/c/movies_for_free/videos" target="_blank">TankieTube</a></p>
+        <p>&copy; 2024 Manojna. No rights reserved.</p>
     </footer>
 
-    <!-- Optional JavaScript for Header Effects -->
+
     <script>
-        // Smooth background transition on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-            } else {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+        function searchVideos() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let videos = document.getElementsByClassName('video-item');
+
+            for (let i = 0; i < videos.length; i++) {
+                let title = videos[i].getAttribute('data-title').toLowerCase();
+                
+                // If the title contains the search term, show the video
+                if (title.includes(input)) {
+                    videos[i].style.display = "block";  // Show video container
+                } else {
+                    videos[i].style.display = "none";   // Hide video container if it doesn't match
+                }
             }
-        });
+        }
     </script>
+
 </body>
 </html>
